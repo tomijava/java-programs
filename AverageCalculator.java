@@ -10,6 +10,6 @@ public class AverageCalculator {
         int z = scanner.nextInt();
         double average = (x+y+z)/3.0;
 
-        System.out.println("Average :" + average);
+        System.out.println("Average:" + average);
     }
 }
