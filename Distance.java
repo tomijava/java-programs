@@ -6,7 +6,8 @@ public class Distance {
             o rodzaju miary METRY KILOMETRY CENTYMETRY w klasie ma byc metoda ktora
              porownuje dwa miary medota toString ktora ladnie wypsuize miare np. 10 km i
              metoda ktora przyjmuje typ miary i zmieni typ miary obiektu na inny
-             */
+             *///wtf
+
 
 
             enum DistanceUnitType

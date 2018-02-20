@@ -2,7 +2,7 @@ public class DistanceTest {
     public static void main(String[] args) {
 
         Distance distanceOne = new Distance(300, Distance.DistanceUnitType.CENTIMETERS);
-        System.out.println(distanceOne.toString());
+        System.out.println(distanceOne.toString());//wtf
 
         distanceOne.changerMesure(Distance.DistanceUnitType.KILOMETERS);
         System.out.println(distanceOne.toString());
