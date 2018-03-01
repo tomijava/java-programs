@@ -37,7 +37,6 @@ public class Distance {
             cmMeasure = this.distance * 100;
         }
     }
-
     public void changerMeasure(DistanceUnitType measure) 
     {
         if (measure.equals(this.measure)) 
@@ -84,10 +83,6 @@ public class Distance {
         	}
     	}
     }
-
-    
-
-
     public boolean equals(Distance obj) 
     {
         return this.cmMeasure== obj.cmMeasure;
