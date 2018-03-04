@@ -1,96 +1,49 @@
-import java.util.Objects;
-
 public class Distance {
-	/* Napisz klase ktora trzyma informacje o wartosci odleglosci i
+    /* Napisz klase ktora trzyma informacje o wartosci odleglosci i
     o rodzaju miary METRY KILOMETRY CENTYMETRY w klasie ma byc metoda ktora
     porownuje dwa miary medota toString ktora ladnie wypsuize miare np. 10 km i
     metoda ktora przyjmuje typ miary i zmieni typ miary obiektu na inny
-    *///wtf
+    */
 
+    enum DistanceUnitType {
+        CENTIMETERS(0.01),
+        METERS(1),
+        KILOMETERS(1000);
 
-	enum DistanceUnitType
-    {
-        CENTIMETERS,
-        METERS,
-        KILOMETERS
-    }
+        private double value;
 
-    private double distance;
-    private DistanceUnitType measure;
-    private double cmMeasure;
-
-    Distance(double distance, DistanceUnitType measure)
-    {
-        this.distance = distance;
-        this.measure = measure;
-
-        if(Objects.equals(measure, DistanceUnitType.KILOMETERS))
-        {
-            cmMeasure = this.distance *100000;
+        DistanceUnitType(double value) {
+            this.value = value;
         }
-        else if(Objects.equals(measure, DistanceUnitType.CENTIMETERS))
-        {
-            cmMeasure = this.distance;
-        }
-        else if(Objects.equals(measure, DistanceUnitType.METERS))
-        {
-            cmMeasure = this.distance * 100;
+
+        public double get() {
+            return value;
         }
     }
-    public void changerMeasure(DistanceUnitType measure) 
-    {
-        if (measure.equals(this.measure)) 
-        {
-            System.out.println("ten sam wymiar glupku");
-        } 
-        else if (measure.equals(DistanceUnitType.KILOMETERS)) 
-        {
-            if (this.measure.equals(DistanceUnitType.CENTIMETERS)) 
-            {
-                this.distance = this.distance / 100000;
-                this.measure = measure;
-            } 
-            else if (this.measure.equals(DistanceUnitType.METERS)) 
-            {
-               this.distance /= 1000;
-               this.measure = measure;
-            }
-    	} 
-    	else if (Objects.equals(measure, DistanceUnitType.METERS)) 
-    	{
-        	if (Objects.equals(this.measure, DistanceUnitType.KILOMETERS)) 
-        	{
-            	this.distance *= 1000;
-            	this.measure = measure;
-        	} 
-        	else if (Objects.equals(this.measure, DistanceUnitType.CENTIMETERS)) 
-        	{
-            	this.distance /= 100;
-            	this.measure = measure;
-        	}
-    	} 
-    	else if (Objects.equals(measure, DistanceUnitType.CENTIMETERS)) 
-    	{
-        	if (Objects.equals(this.measure, DistanceUnitType.METERS)) 
-        	{
-            	this.distance *= 100;
-            	this.measure = measure;
-        	} 
-        	else if (Objects.equals(this.measure, DistanceUnitType.KILOMETERS)) 
-        	{
-            	this.distance *= 100000;
-            	this.measure = measure;
-        	}
-    	}
+
+    private double value;
+    private DistanceUnitType unitType;
+
+    Distance(double distance, DistanceUnitType unitType) {
+        this.value = distance;
+        this.unitType = unitType;
     }
-    public boolean equals(Distance obj) 
-    {
-        return this.cmMeasure== obj.cmMeasure;
+
+    public void changeUnitType(DistanceUnitType unitType) {
+        this.value = getDistanceValueInUnit(this, unitType);
+        this.unitType = unitType;
+    }
+
+    private double getDistanceValueInUnit(Distance distance, DistanceUnitType unitType) {
+        return distance.value * distance.unitType.get() / unitType.get();
+    }
+
+    public boolean equals(Distance distance) {
+        return this.value == getDistanceValueInUnit(distance, this.unitType);
     }
 
     @Override
-    public String toString()
-    {
-    	return distance + " " + measure;
+    public String toString() {
+        return value + " " + unitType;
     }
 }
