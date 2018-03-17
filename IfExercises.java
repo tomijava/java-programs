@@ -1,6 +1,6 @@
 import java.util.Scanner;
 
-public class IfExcercises {
+public class IfExercises {
 	public static void main(String[] args) {
 		/*Napisz program, który sprawdza dla trzech boków trójkąta a ,
 		b i c wprowadzonych z klawiatury, czy tworzą one trójkąt pro-
@@ -9,18 +9,17 @@ public class IfExcercises {
 
 		Scanner scanner = new Scanner(System.in);
 
-		int a, b, c;
 		System.out.println("Enter length sides triangle:" + "\n" + "Side a: ");
-		a = scanner.nextInt();
+		int a = scanner.nextInt();
 		
 		System.out.println("Side b:");
-		b = scanner.nextInt();
+		int b = scanner.nextInt();
 		
 		System.out.println("Side c");
-		c= scanner.nextInt();
+		int c = scanner.nextInt();
 		scanner.nextLine();
 
-		if((a*a) + (b*b) == c*c)
+		if ((a*a) + (b*b) == c*c)
 		{
 			System.out.println("Triangle is rectangular");
 		}
@@ -36,34 +35,31 @@ public class IfExcercises {
 		format wyświetlania ich na ekranie z dokładnością do dwóch
 		miejsc po przecinku.
 		*/
-		
-		
-		double x1, x2;
-		System.out.println("ax^2 + bx + c =0; Enter a, b, c for calculate x");
+		System.out.println();
+		System.out.println("ax^2 + bx + c = 0; Enter a, b, c for calculate x");
 		System.out.println("Enter a");
 		double a2 = scanner.nextDouble();
 		System.out.println("Enter b");
 		double b2 = scanner.nextDouble();
 		System.out.println("Enter c");
 		double c2 = scanner.nextDouble();
-		scanner.nextLine();
-		double delta = (b2*b2) - (4*a2*c2);
+		double delta = b2 * b2 - 4 * a2 * c2;
 
-		if(delta == 0)
+		if (delta == 0)
 		{
-			x1 = (-b2/(2*a2));
+			double x1 = -b2 / 2 * a2;
 			System.out.print(delta + " = 0 ");
 			System.out.printf("x1 = %.2f%n", x1);
 		}
-		else if(delta>0)
+		else if (delta >0 )
 		{
-			x1 = (-b2 - Math.sqrt(delta))/(2*a2);
-			x2 = (-b2 + Math.sqrt(delta))/(2*a2);
+			double x1 = (-b2 - Math.sqrt(delta)) / 2 * a2;
+			double x2 = (-b2 + Math.sqrt(delta)) / 2 * a2;
 			System.out.print(delta + " > 0 ");
 			System.out.printf("x1 = %.2f", x1);
 			System.out.printf(" x2 = %.2f%n", x2);
 		}
-		else if(delta < 0)
+		else if (delta < 0)
 		{
 			System.out.println(delta + " < 0, No elements");
 		}
