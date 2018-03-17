@@ -5,17 +5,17 @@ public class ReverseString {
 
         /************************************************
         Write a Java program to reverse a string and 
-        Write a Java program to count the letters, spaces, 
+        Write a Java program to count the letters, spaces,
         numbers and other characters of an input string.
         *************************************************/
         
         Scanner scan = new Scanner(System.in);
-        int escape = 1;
-        int letters = 0;
-        int numbers = 0;
-        int spaces = 0;
-        int othersChar = 0;
-        while(escape == 1) {
+        boolean doContinue = true;
+        int letterCount = 0;
+        int numberCount = 0;
+        int spaceCount = 0;
+        int otherCharCount = 0;
+        while(doContinue) {
             System.out.println("Input a sentence: ");
             char [] chars = scan.nextLine().toCharArray();
 
@@ -26,32 +26,31 @@ public class ReverseString {
             System.out.print("\n"); 
             
             for(int index = chars.length-1; index >=0; index--) {
-                if((chars[index] > 65 && chars[index] < 90 ) || (chars[index] > 97 && chars[index] < 122)) {
-                    letters++;
+                if((chars[index] >= 'A' && chars[index] <= 'Z' ) || (chars[index] >= 'a' && chars[index] <= 'z')) {
+                    letterCount++;
                 }
                 else if(chars[index] > 48 && chars[index] < 57) {
-                    numbers++;
+                    numberCount++;
                 }
                 else if(chars[index] == ' ') {
-                    spaces++;
+                    spaceCount++;
                 }
                 else {
-                    othersChar++;
+                    otherCharCount++;
                 }
             }
-            System.out.println("Letters in sentence = " + letters);
-            System.out.println("Numbers in sentence = " + numbers);
-            System.out.println("Spaces in sentence = " + spaces);
-            System.out.println("Others characters in sentence = " + othersChar);
-            letters = 0;
-            numbers = 0;
-            spaces = 0;
-            othersChar = 0;
+            System.out.println("Letters in sentence = " + letterCount);
+            System.out.println("Numbers in sentence = " + numberCount);
+            System.out.println("Spaces in sentence = " + spaceCount);
+            System.out.println("Others characters in sentence = " + otherCharCount);
+            letterCount = 0;
+            numberCount = 0;
+            spaceCount = 0;
+            otherCharCount = 0;
 
             System.out.println("Input 1 to contunue or annother number to exit");
-            escape = scan.nextInt();
-            scan.nextLine();
+            doContinue = scan.nextInt() == 1;
         }
-    scan.close();
+        scan.close();
     }
 }
