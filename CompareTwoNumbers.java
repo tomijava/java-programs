@@ -24,8 +24,7 @@ public class CompareTwoNumbers {
 
 			System.out.println("Enter 0 to continue or enter 1 to exit");
 			continueOrExit = scan.nextInt();
-			scan.nextLine();
 		}
-	scan.close();
+		scan.close();
 	}
 }
