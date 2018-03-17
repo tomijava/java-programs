@@ -1,14 +1,12 @@
 import java.util.Scanner;
 
-
 public class AscIIValue {
 
-    public enum ContinueOrExit { //How i should name this enum?
-        EXIT('N'),
-        CONTINUE('Y');
-    
+    public enum ProgramStatus {
+        EXIT('N');
+
         private char value;
-        private ContinueOrExit(char value) {
+        private ProgramStatus(char value) {
         this.value = value;
         }
 
@@ -21,7 +19,6 @@ public class AscIIValue {
         // Write a Java program to print the ascii value of a given character
 
         Scanner scan = new Scanner(System.in);
-        
 
         while (true) {
             System.out.println("Input a letter ");
@@ -29,22 +26,17 @@ public class AscIIValue {
                 
             if ((letter >= 'A' && letter<= 'Z') || (letter >= 'a' && letter <='z')) {
                     
-                int ascii = (int) letter;
+                int asciiCode = (int) letter;
             
-                System.out.println("The ASCII value of " + letter + " is: " + ascii);
+                System.out.println("The ASCII code of " + letter + " is: " + asciiCode);
                 System.out.println("Enter Y to continue or N to exit");
-                char whatToDo = scan.next().charAt(0);
 
-                if (whatToDo == ContinueOrExit.CONTINUE.value) {
-                    continue;
-                }
-                else if (whatToDo == ContinueOrExit.EXIT.value) {
+                if (scan.next().charAt(0) == ProgramStatus.EXIT.value) {
                     break;
                 }
-
             }
             else {
-                    System.out.println("You didn't input a letter !! Try again");
+                System.out.println("You didn't input a letter !! Try again");
             }
         }
         scan.close();      
