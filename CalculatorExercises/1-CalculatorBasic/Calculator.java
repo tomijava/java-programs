@@ -45,6 +45,10 @@ public class Calculator {
         
         double result1 = 0; 
 
+        List<String> history = new ArrayList<String>();
+
+
+
         while(true) {
 
             boolean cont = true;
@@ -61,6 +65,14 @@ public class Calculator {
 
             if (string.toString().equals("exit")) {
                 break;
+            }
+
+            else if (string.toString().equals("show")) {
+
+            	for (String equation : history) {
+
+            		System.out.println(equation);
+            	}
             }
 
             else {
@@ -98,22 +110,22 @@ public class Calculator {
 
                     case '+':
                         result1 = Calculator.operation(result1, number, MathOperator.SUM);
-
+                        history.add((result1 - number) + " + " + number + " = " + result1);
                         break;
 
                     case '-':
                         result1 = Calculator.operation(result1, number, MathOperator.SUBSTRACTION);
-
+                        history.add((result1 + number) + " - " + number + " = " + result1);
                         break;
 
                     case '/':
                         result1 = Calculator.operation(result1, number, MathOperator.DIVIDE);
-
+                        history.add((result1 * number) + " / " + number + " = " + result1);
                         break;
 
                     case '*':
                         result1 = Calculator.operation(result1, number, MathOperator.MULTIPLCATION);
-
+                        history.add((result1 / number) + " * " + number + " = " + result1);
                         break;
 
                     default:
