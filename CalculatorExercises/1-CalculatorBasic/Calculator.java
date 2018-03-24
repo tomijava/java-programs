@@ -42,12 +42,14 @@ public class Calculator {
         Scanner scan = new Scanner(System.in);
 
         Double number = new Double(30);
+
+        List<Double> number2 = new ArrayList<Double>();
         
-        double result1 = 0; 
+        double result1 = 0; ;
 
         List<String> history = new ArrayList<String>();
 
-
+        List<Character> sign2 = new ArrayList<Character>();
 
         while(true) {
 
@@ -69,12 +71,41 @@ public class Calculator {
 
             else if (string.toString().equals("show")) {
 
-            	for (String equation : history) {
+                for (String equation : history) {
 
-            		System.out.println(equation);
-            	}
+                    System.out.println(equation);
+                }
             }
 
+            else if (string.toString().equals("back")) {
+  
+                
+                if(history.size() == 0) {
+                    System.out.println("Nie ma zadnej operacji do cofniecia");
+                }        
+                else {
+                    System.out.print("Wycofywanie operacji ");
+                    System.out.println(history.get(history.size()-1));
+
+                    history.remove(history.size()-1);
+
+                    if(sign2.get(sign2.size()-1).charValue() == '+') {
+                        result1 -= number2.get(number2.size()-1).doubleValue();
+                    }
+                    else if (sign2.get(sign2.size()-1).charValue() == '-') {
+                        result1 += number2.get(number2.size()-1).doubleValue();
+                    }
+                    else if (sign2.get(sign2.size()-1).charValue() == '/') {
+                        result1 *= number2.get(number2.size()-1).doubleValue();
+                    }
+                    else if (sign2.get(sign2.size()-1).charValue() == '*') {
+                        result1 /= number2.get(number2.size()-1).doubleValue();
+                    }
+
+                    number2.remove(number2.size()-1);
+                    sign2.remove(sign2.size()-1);                        
+                }
+            }
             else {
 
                 for (int i = 1; i< string.length(); i++) {
@@ -98,6 +129,8 @@ public class Calculator {
 
                 number = number.parseDouble(string2.toString());;
 
+                number2.add(number);
+
                 } catch (NumberFormatException e) {
 
                     continue;
@@ -111,21 +144,25 @@ public class Calculator {
                     case '+':
                         result1 = Calculator.operation(result1, number, MathOperator.SUM);
                         history.add((result1 - number) + " + " + number + " = " + result1);
+                        sign2.add('+');
                         break;
 
                     case '-':
                         result1 = Calculator.operation(result1, number, MathOperator.SUBSTRACTION);
                         history.add((result1 + number) + " - " + number + " = " + result1);
+                        sign2.add('-');
                         break;
 
                     case '/':
                         result1 = Calculator.operation(result1, number, MathOperator.DIVIDE);
                         history.add((result1 * number) + " / " + number + " = " + result1);
+                        sign2.add('/');
                         break;
 
                     case '*':
                         result1 = Calculator.operation(result1, number, MathOperator.MULTIPLCATION);
                         history.add((result1 / number) + " * " + number + " = " + result1);
+                        sign2.add('*');
                         break;
 
                     default:
