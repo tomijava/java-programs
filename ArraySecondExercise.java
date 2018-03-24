@@ -33,7 +33,7 @@ public class ArraySecondExercise {
 
             }
             else if (numberOfOccurences > 1) {
-            System.out.println(numberToSearch + " appeared in array " + numberOfOccurences + " times"); 
+            	System.out.println(numberToSearch + " appeared in array " + numberOfOccurences + " times"); 
             }
             else {
                 System.out.println("No number in array");
