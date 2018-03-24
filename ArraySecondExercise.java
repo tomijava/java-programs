@@ -6,10 +6,10 @@ public class ArraySecondExercise {
          //Write a Java program to test if an array contains a specific value
         Scanner scan = new Scanner(System.in);
         Random random = new Random();
-        int[] array = new int[100];
+        int[] randomIntArray = new int[100];
 
-        for (int numberOfIndex = 0; numberOfIndex < array.length; numberOfIndex++) {
-            array[numberOfIndex] = random.nextInt(100);
+        for (int numberIndex = 0; numberIndex < randomIntArray.length; numberIndex++) {
+            randomIntArray[numberIndex] = random.nextInt(101);
         }
 
         System.out.println("Enter number to search");
@@ -18,22 +18,22 @@ public class ArraySecondExercise {
             
             int numberToSearch = scan.nextInt();
 
-            int numberOfExecptions = 0;
+            int numberOfOccurences = 0;
 
-            for (int numberOfIndex : array) {
+            for (int numberIndex : randomIntArray) {
             
-                if (numberOfIndex ==  numberToSearch) {
-                    numberOfExecptions ++;
+                if (numberIndex ==  numberToSearch) {
+                    numberOfOccurences ++;
                 }        
 
             }
 
-            if (numberOfExecptions == 1) {
-                System.out.println(numberToSearch + " appeared in array " + numberOfExecptions + " time");
+            if (numberOfOccurences == 1) {
+                System.out.println(numberToSearch + " appeared in array " + numberOfOccurences + " time");
 
             }
-            else if (numberOfExecptions > 1) {
-            System.out.println(numberToSearch + " appeared in array " + numberOfExecptions + " times"); 
+            else if (numberOfOccurences > 1) {
+            System.out.println(numberToSearch + " appeared in array " + numberOfOccurences + " times"); 
             }
             else {
                 System.out.println("No number in array");
