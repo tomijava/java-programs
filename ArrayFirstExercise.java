@@ -23,54 +23,25 @@ public class ArrayFirstExercise {
         Scanner scan = new Scanner(System.in);
         Random random = new Random();
         
-        while(true) {
+        while (true) {
 
-            int sumElementsInArray = 0;
-            int sumElementsInArrayV2 = 0;
+            int sumOfElementsInArray = 0;
 
             System.out.println("Enter the size of the array");
             int sizeArray = scan.nextInt();
-            scan.nextLine();
             
-            int[] array = new int[sizeArray];
-           
-            /* assigning a value to elements of the array and
-            and sums all elements in the array */
-            for (int indexOfNumber = 0; indexOfNumber < array.length; indexOfNumber++) {
-                array[indexOfNumber] = random.nextInt(100);
-                sumElementsInArray += array[indexOfNumber];
+            int[] intArray = new int[sizeArray];
 
-            }
-            // another way
-            for(int indexOfNumber : array) {
-                indexOfNumber = random.nextInt(100) - 50;
-                sumElementsInArrayV2 += indexOfNumber;
-                System.out.print(indexOfNumber + " ");
+            for (int indexOfArrayInt : intArray) {
+                indexOfArrayInt = random.nextInt(101);
+                sumOfElementsInArray += indexOfArrayInt;
+                System.out.print(indexOfArrayInt + " + ");
             }
 
-            System.out.println(sumElementsInArrayV2);
-            System.out.println();
-            System.out.println("----------------");
-
-
-            //print value all elements of array
-            for (int indexOfNumber = 0; indexOfNumber < array.length; indexOfNumber++) {
-                System.out.print(array[indexOfNumber] + " ");
-            }
-            System.out.println();
-            System.out.println("----------------");
-
-            //another way 
-            for(int indexOfNumber : array) {
-                System.out.print(indexOfNumber + " ");
-            }
-
-            System.out.println();
-
-            System.out.println();
-            System.out.println("Thier sum is equal = " + sumElementsInArray);
+            System.out.println(" = " + sumOfElementsInArray);
         
             System.out.println("Enter 1 to continue or 0 to exit");
+           
             int whatToDO = scan.nextInt();
 
             if (whatToDO == ContinueOrExit.CONTINUE.value) {
