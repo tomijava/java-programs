@@ -1,43 +1,61 @@
-import java.util.*;
-import java.lang.*;
-
 public class Calculator {
    
     private double result;
+
+    public Calculator () {
+        this.result = 0;
+    }    
 
     public double getResult() {
         return result;
     }
 
-    public Calculator () {
-        this.result = 0;
+    public String toString(double result) {
+
+        if (result == (int)result) {
+            return Integer.toString((int)result);
+        }
+        else {
+            return Double.toString(result);
+        }
+    } 
+
+    private void add(double number) {
+        this.result += number;
+    }
+    private void substract(double number) {
+        this.result -= number;
+    }
+    private void divide(double number) {
+        this.result /= number;
+    }
+    private void multiply(double number) {
+        this.result *= number;
     }
 
     public void calculate (String input) {
         try {
-                switch (input.charAt(0)) {
+            switch (input.charAt(0)) {
                 case '+':
-                    result += Double.valueOf(input.substring(1)); 
+                    add(Double.valueOf(input.substring(1))); 
                     break;
                 case '-':
-                    result -= Double.valueOf(input.substring(1));
+                    substract(Double.valueOf(input.substring(1)));
                     break;
                 case '/':
-                    result /= Double.valueOf(input.substring(1));
+                    divide(Double.valueOf(input.substring(1)));
                     break;
                 case '*':
-                    result *= Double.valueOf(input.substring(1));
+                    multiply(Double.valueOf(input.substring(1)));
                     break;
                 default : 
                     System.out.println("Zle polecenie");
                     break;
-                }       
-            
-            } catch (StringIndexOutOfBoundsException err) {
-                System.out.println("Zle polecenie");
-            } catch (NumberFormatException err2) {
-                System.out.println("Zle Polecenie");                           
-        }
+                }              
+            } 
+        catch (StringIndexOutOfBoundsException | NumberFormatException error) {
+            System.out.println("Zle polecenie");
+        } 
     }
 }
  

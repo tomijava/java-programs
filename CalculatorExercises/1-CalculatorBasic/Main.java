@@ -1,5 +1,4 @@
-import java.util.*;
-import java.lang.*;
+import java.util.Scanner;
 
 public class Main {
 
@@ -11,16 +10,15 @@ public class Main {
         
         while(true) {
 
-            System.out.println(calculator.getResult());
+            System.out.println(calculator.toString(calculator.getResult()));
 
             String input = new String(scan.nextLine()); 
 
-            StringHelper.removeWhiteSpace(input);
+            StringHelper.removeWhitespace(input);
 
             if (input.toString().equals("exit")) {
                 break;  
             }
-
             calculator.calculate(input);
         }
     }
