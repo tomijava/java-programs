@@ -10,7 +10,7 @@ public class Calculator {
         return result;
     }
 
-    public String toString(double result) {
+    public String toString() {
 
         if (result == (int)result) {
             return Integer.toString((int)result);
@@ -51,9 +51,9 @@ public class Calculator {
                 default : 
                     System.out.println("Zle polecenie");
                     break;
-                }              
-            } 
-        catch (StringIndexOutOfBoundsException | NumberFormatException error) {
+            }              
+        } 
+        catch (Exception exception) {
             System.out.println("Zle polecenie");
         } 
     }
