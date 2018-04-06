@@ -1,9 +1,11 @@
 import java.util.*;
 import java.lang.*;
 
-public class Strings {
+public class StringHelper {
 
-    public static StringBuilder removeWhiteSpace (StringBuilder input) {
+    public static StringBuilder removeWhiteSpace (String string) {
+
+    	StringBuilder input  = new StringBuilder(string);
 
         for (int i = 0; i < input.length(); i++) {
             if (Character.isWhitespace(input.charAt(i))) {
