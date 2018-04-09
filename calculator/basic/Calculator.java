@@ -14,11 +14,11 @@ public class Calculator {
 
     public String toString() {
 
-        if (result == (int)result) {
-            return Integer.toString((int)result);
+        if (this.result == (int)this.result) {
+            return Integer.toString((int)this.result);
         }
         else {
-            return Double.toString(result);
+            return Double.toString(this.result);
         }
     } 
 
