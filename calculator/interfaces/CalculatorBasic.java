@@ -21,17 +21,35 @@ public class CalculatorBasic implements Calculator {
             return Double.toString(this.result);
         }
     } 
+    public void calculate (String number) {
+        StringBuilder input = new StringBuilder(number);  
 
-    public void add(double number) {
+        switch (input.charAt(0)) {
+            case '+' :
+                add(Double.parseDouble(input.substring(1)));
+                break;
+            case '-' :
+                subtract(Double.parseDouble(input.substring(1)));
+                break;
+            case '/':
+                divide(Double.parseDouble(input.substring(1)));
+                break;
+            case '*':
+                multiply(Double.parseDouble(input.substring(1)));
+                break;
+        }
+    }
+
+    private void add(double number) {
         this.result += number;
     }
-    public void subtract(double number) {
+    private void subtract(double number) {
         this.result -= number;
     }
-    public void divide(double number) {
+    private void divide(double number) {
         this.result /= number;
     }
-    public void multiply(double number) {
+    private void multiply(double number) {
         this.result *= number;
     }
 }

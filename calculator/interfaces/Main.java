@@ -29,7 +29,6 @@ public class Main {
                 break;
             }
             else if (calculatorModel.equals(moduloCalculator)) {
-
                 pattern = Pattern.compile("[\\+\\-\\*\\/]{1}[0-9]+");
                 System.out.println("Enter modulo number");
                 calculator = new CalculatorModulo(scan.nextInt());
@@ -47,7 +46,6 @@ public class Main {
         }
 
         while(true) {
-
             System.out.println(calculator.toString());
             String input = StringHelper.removeWhitespace(scan.nextLine());
             Matcher matcher = pattern.matcher(input);
@@ -55,27 +53,14 @@ public class Main {
             if (input.equals("exit")) {
                 break;  
             }
-            else if(matcher.matches()) {
-                switch (input.charAt(0)) {
-                    case '+' :
-                        calculator.add(Double.parseDouble(input.substring(1)));
-                        break;
-                    case '-' :
-                        calculator.subtract(Double.parseDouble(input.substring(1)));
-                        break;
-                    case '/':
-                        calculator.divide(Double.parseDouble(input.substring(1)));
-                        break;
-                    case '*':
-                        calculator.multiply(Double.parseDouble(input.substring(1)));
-                        break;
-                    }       
+            else if (matcher.matches()) {
+                calculator.calculate(input);
             }
             else {
                 System.out.println("Bad command");
             }
-        }
+        } 
         scan.close();
-    }
+    } 
 }
  
