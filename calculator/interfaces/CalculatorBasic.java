@@ -3,7 +3,7 @@ package calculator.interfaces;
 public class CalculatorBasic implements Calculator {
    
     private double result;
-
+    
     public CalculatorBasic () {
         this.result = 0;
     }    
