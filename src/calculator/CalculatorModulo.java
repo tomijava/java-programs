@@ -1,9 +1,10 @@
-package calculator.interfaces;
+package calculator;
 
 public class CalculatorModulo implements Calculator {
 
     private double result;
     private double modulo;
+    public static final String INPUT_PATTERN = "[\\+\\-\\*\\/]{1}[0-9]+"; 
 
     public CalculatorModulo (double modulo) {
         this.result = 0;

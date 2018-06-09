@@ -1,4 +1,4 @@
-package calculator.interfaces;
+package calculator;
 public enum Zone {
     PARIS("Europe/Paris", 1), 
     ATHENS("Europe/Athens", 2), 
@@ -11,9 +11,16 @@ public enum Zone {
 
     public String idZone;
     public int number;
+    public static int numberOfFirstZone = 1; // Dlaczego nie moglem zainicjalizowac w konstruktorzE ?3
+    public static int numberOfLastZone = Zone.values().length + 1;
 
     private Zone (String id, int number) {
         this.idZone = id;
         this.number = number;
+    }
+    public static void printAllTimeZone() {
+        for (Zone id : Zone.values()) {
+            System.out.println(id.number + ": " + id);
+        }
     }
 }

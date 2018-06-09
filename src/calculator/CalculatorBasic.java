@@ -1,10 +1,12 @@
-package calculator.interfaces;
+package calculator;
 
 public class CalculatorBasic implements Calculator {
    
     private double result;
-    
-    public CalculatorBasic () {
+    String INPUT_PATTERN = "[\\+\\-\\*\\/]{1}[0-9]+";
+    //Example patterns +1, -23, *403, /5  
+
+    public CalculatorBasic() {
         this.result = 0;
     }    
 
@@ -13,7 +15,6 @@ public class CalculatorBasic implements Calculator {
     }
 
     public String toString() {
-
         if (this.result == (int)this.result) {
             return Integer.toString((int)this.result);
         }
@@ -21,11 +22,11 @@ public class CalculatorBasic implements Calculator {
             return Double.toString(this.result);
         }
     } 
-    public void calculate (String number) {
+    public void calculate(String number) {
         StringBuilder input = new StringBuilder(number);  
 
         switch (input.charAt(0)) {
-            case '+' :
+            case '+':
                 add(Double.parseDouble(input.substring(1)));
                 break;
             case '-' :
@@ -39,7 +40,6 @@ public class CalculatorBasic implements Calculator {
                 break;
         }
     }
-
     private void add(double number) {
         this.result += number;
     }

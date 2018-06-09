@@ -1,21 +1,19 @@
-package calculator.interfaces;
+package calculator;
+
 import java.util.Scanner;
-import java.util.InputMismatchException;
-import java.util.regex.*;
-import java.time.ZoneId;
+import java.util.regex.Pattern;
 
 public class Main {
 
-    public static final String basicCalculator = "1";
-    public static final String moduloCalculator = "2";
-    public static final String binaryCalculator = "3";
-    public static final String dateAndTimeCalculator = "4";
+    private static final String BASIC_CALCULATOR = "1";
+    private static final String MODULO_CALCULATOR = "2";
+    private static final String BINARY_CALCULATOR = "3";
+    private static final String DATE_AND_TIME_CALCULATOR = "4";
    
     public static void main(String[] args) {
         Scanner scan = new Scanner(System.in);
-        String calculatorModel = "0";
-        Pattern pattern;
-        Calculator calculator = null;
+        String calculatorModel;
+        Calculator calculator ;
         CalculatorDateAndTime calculatorDateAndTime = null;
 
         System.out.println("Please chose calculator model");
@@ -27,79 +25,64 @@ public class Main {
         while(true) {
             calculatorModel = scan.nextLine();
 
-            if (calculatorModel.equals(basicCalculator)) {
+            if (calculatorModel.equals(BASIC_CALCULATOR)) {
                 calculator = new CalculatorBasic();
-                pattern = Pattern.compile("[\\+\\-\\*\\/]{1}[0-9]+");
                 break;
             }
-            else if (calculatorModel.equals(moduloCalculator)) {
-                pattern = Pattern.compile("[\\+\\-\\*\\/]{1}[0-9]+");
+            else if (calculatorModel.equals(MODULO_CALCULATOR)) {
                 System.out.println("Enter modulo number");
                 calculator = new CalculatorModulo(scan.nextInt());
                 scan.nextLine();
                 break;
             }
-            else if (calculatorModel.equals(binaryCalculator)) {
+            else if (calculatorModel.equals(BINARY_CALCULATOR)) {
                 calculator = new CalculatorBinary();
-                pattern = Pattern.compile("[\\+\\-\\/\\*]{1}[0-1]*");
                 break;
             }
-            else if (calculatorModel.equals(dateAndTimeCalculator)) {
+            else if (calculatorModel.equals(DATE_AND_TIME_CALCULATOR)) {
                 System.out.println("Choose your time zone");
-
-                for (Zone id : Zone.values()) {
-                    System.out.println(id.number + ": " + id);
-                }
-                int city = scan.nextInt();
+                Zone.printAllTimeZone();
+                int timeZone = scan.nextInt();
                 scan.nextLine();
-                Zone d = Zone.PARIS;
                 for (Zone id : Zone.values()) {
-                    if (id.number == city) {
-                        System.out.printf("You choosed %s zone %n", id.idZone);
-                        d = id;
+                    if (id.number == timeZone) {
+                        calculatorDateAndTime = new CalculatorDateAndTime(id);
+                        System.out.printf("You choosed %s zone %n", id.idZone); 
                         break;
                     }
-                }
-                calculatorDateAndTime = new CalculatorDateAndTime(d);
-                pattern = Pattern.compile("^([\\+\\-])\\s*((\\d*)y)?\\s*((\\d*)m)?\\s*((\\d*)d)?\\s*((\\d*)h)?\\s*((\\d*)min)?\\s*((\\d*)s)?$");
-                break;
+                }               
             }
             else {
                 System.out.println("Bad command");
             }
         }
         while (true) {
-            if (calculatorDateAndTime != null) {
+            if (calculatorDateAndTime instanceof CalculatorDateAndTime) {
                 System.out.println(calculatorDateAndTime.toString());
                 String input = StringHelper.removeWhitespace(scan.nextLine());
-                Matcher matcher = pattern.matcher(input);
-                Pattern patternForShowSince = Pattern.compile("^showSecondsSince(\\d{1,4})\\s?([1-9]|1[0-2])?\\s?([1-9]|1[0-9]|2[0-9]|3[01])?$"); 
-                Matcher matcherForShowSince = patternForShowSince.matcher(input);            
                 if (input.equals("exit")) {
                     break;  
                 }
-                else if (matcher.matches()) {
-                    calculatorDateAndTime.calculate(input);
+                else if (input.equals("help")) {
+                    calculatorDateAndTime.printHelp();
                 }
                 else if (input.equals("changeCity")) {
-                    for (Zone id : Zone.values()) {
-                        System.out.println(id.number + " " + id);
-                    }
+                    Zone.printAllTimeZone();
                     System.out.println("Enter the city number");
                     while (true) {
-                        int city = scan.nextInt();
+                        int cityNumber = scan.nextInt();
                         scan.nextLine();
-                        if (city >= 1 && city <= 8) {
+                        if (cityNumber >= Zone.numberOfFirstZone && cityNumber <= Zone.numberOfLastZone) {
                             for (Zone id : Zone.values()) {
-                                if (id.number == city) {
+                                if (id.number == cityNumber) {
                                     calculatorDateAndTime = new CalculatorDateAndTime(id);
                                     break;
                                 }
                             }
-                            break;       
+                            break;
                         }
                         else {
-                            System.out.println("Bad command enter correct number");
+                            System.out.println("Bad number");
                         }
                     }
                 }
@@ -107,27 +90,25 @@ public class Main {
                     System.out.println(calculatorDateAndTime.whenSunday());
 
                 }
-                else if (matcherForShowSince.matches()) {
-                                        
-                    calculatorDateAndTime.showSecondsSince(input);
+                else if (input.matches(calculatorDateAndTime.INPUT_PATTERN_FOR_CALCULATE.pattern())) {
+                    calculatorDateAndTime.calculate(input);
                 }
-                else if (input.equals("help")) {
-                    calculatorDateAndTime.printHelp();
+                else if (input.matches(calculatorDateAndTime.INPUT_PATTERN_FOR_SHOW_SECONDS_SINCE.pattern())) {                                
+                    calculatorDateAndTime.showSecondsSince(input);
                 }
                 else {
                     System.out.println("Bad command");
                     calculatorDateAndTime.printHelp();
                 }               
             }
-            else {
+            else if (calculator instanceof Calculator) {
                 System.out.println(calculator.toString());
                 String input = StringHelper.removeWhitespace(scan.nextLine());
-                Matcher matcher = pattern.matcher(input);
                             
                 if (input.equals("exit")) {
                     break;  
                 }
-                else if (matcher.matches()) {
+                else if (Pattern.matches(calculator.INPUT_PATTERN, input)) {
                     calculator.calculate(input);
                 }
                 else {
