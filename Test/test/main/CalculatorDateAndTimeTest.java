@@ -21,7 +21,7 @@ public class CalculatorDateAndTimeTest {
         String expected = "2018-06-26";
         assertEquals(expected, actual);
     }
-    @Test // robic na metody :)
+    @Test  // rozbic na metody :)
     public void calculate() {
         testDate = CalculatorDateAndTime.calculate(testDate, "+1y +1m +1d");
         String actual = testDate.format(DateTimeFormatter.ISO_LOCAL_DATE);
@@ -60,12 +60,12 @@ public class CalculatorDateAndTimeTest {
         expected = "86400";
         assertEquals(expected, actual);
 
-        input = "showSecondSince 2017/6/25";
+        input = "showSecondSince 2018/6/25";
         actual = CalculatorDateAndTime.showSecondSince(testDate, input);
         expected = "86400";
         assertEquals(expected, actual);
 
-        input = "showSecondSince 2017/06/25";
+        input = "showSecondSince 2018/06/25";
         actual = CalculatorDateAndTime.showSecondSince(testDate, input);
         expected = "86400";
         assertEquals(expected, actual);
