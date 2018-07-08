@@ -8,9 +8,9 @@ public class CalculatorDateAndTime {
 
     public static String toString(ZonedDateTime date) { return "";}
 
-    public static ZonedDateTime calculate(ZonedDateTime date, String operation) {return ZonedDateTime.of(2018,
-            6, 26, 0, 0, 0, 0,
-            ZoneId.of(TimeZone.getDefault().getID()));}
+    public static ZonedDateTime calculate(ZonedDateTime date, String operation) {
+        return ZonedDateTime.of(2018, 6, 26, 0, 0, 0, 0,
+                ZoneId.of(TimeZone.getDefault().getID()));}
 
     public static String showSecondSince(ZonedDateTime date, String input) {return "";}
 
